@@ -1,15 +1,15 @@
 package br.fag;
 
-import io.quarkus.qute.Template;
-import io.quarkus.qute.TemplateInstance;
+        import io.quarkus.qute.Template;
+        import io.quarkus.qute.TemplateInstance;
 
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.Produces;
-import jakarta.ws.rs.QueryParam;
-import jakarta.ws.rs.core.MediaType;
+        import jakarta.ws.rs.GET;
+        import jakarta.ws.rs.Path;
+        import jakarta.ws.rs.Produces;
+        import jakarta.ws.rs.QueryParam;
+        import jakarta.ws.rs.core.MediaType;
 
-import static java.util.Objects.requireNonNull;
+        import static java.util.Objects.requireNonNull;
 
 @Path("/some-page")
 public class SomePage {
@@ -27,3 +27,4 @@ public class SomePage {
     }
 
 }
+
