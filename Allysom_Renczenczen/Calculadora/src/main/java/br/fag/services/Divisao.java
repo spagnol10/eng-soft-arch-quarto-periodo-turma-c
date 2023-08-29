@@ -1,12 +1,13 @@
 package br.fag.services;
+
+import br.fag.model.Resultado;
+
 public class Divisao {
 
-    public int operacao(int primeiroValor,  int segundoValor){
-        try {
-            return primeiroValor / segundoValor;
-        }catch (Exception  e){
-            System.out.println("ERRO - Valor digitado nao e um numero inteiro!");
-        }
-        return 0;
+    public Resultado operacao(int primeiroValor, int segundoValor){
+       if(segundoValor <= 0){
+            return new Resultado("Divisão por zero ou menor não permitida");
+       }
+       return new Resultado( primeiroValor / segundoValor);
     }
 }
