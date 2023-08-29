@@ -1,4 +1,4 @@
-package br.fag;
+package br.fag.services;
 
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
