@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+</head>
+<body>
+  
+  <form action="/calculator" method="post">
+    <label>
+      Primeiro valor:
+      <input type="number" name="primeiroValor" id="primeiroValor">
+    </label>
+
+    <label>
+      Segundo valor:
+      <input type="number" name="segundoValor" id="segundoValor">
+    </label>
+
+    <select name="operacoes" id="operacoes">
+      {#for operation in arithmeticOperations}
+      <option value="{operation}">{operation}</option>
+      {/for}
+    </select>
+
+    <input type="submit" value="Calcular">
+  </form>
+
+</body>
+</html>
