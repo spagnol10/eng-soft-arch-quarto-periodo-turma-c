@@ -1,4 +1,5 @@
 package br.fag.controllers;
+import br.fag.model.Resultado;
 import br.fag.services.Divisao;
 import br.fag.services.Multiplicacao;
 import br.fag.services.Somar;
@@ -7,6 +8,8 @@ import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.Response;
+
+
 @Path("/calculate")
 public class CalculatorResource {
     @GET
@@ -16,18 +19,21 @@ public class CalculatorResource {
         Somar somar = new Somar();
         Substracao substracao = new Substracao();
         Multiplicacao multiplicacao = new Multiplicacao();
-        float result;
+        Resultado resultado;
 
         switch (operator) {
-            case "+" -> result = somar.operacao(first, second);
-            case "-" -> result = substracao.operacao(first,second);
-            case "*" -> result = multiplicacao.operacao(first,second);
-            case "/" -> result = divisao.operacao((int)first,(int)second);
+            case "+" -> resultado = new Resultado(somar.operacao(first, second));
+            case "-" -> resultado = new Resultado(substracao.operacao(first,second));
+            case "*" -> resultado = new Resultado(multiplicacao.operacao(first,second));
+            case "/" -> resultado = divisao.operacao((int)first, (int)second);
             default -> {
                 return Response.status(Response.Status.BAD_REQUEST).entity("Invalid operator").build();
             }
         }
-        return Response.ok(String.valueOf(result)).build();
+        if (resultado.temErro()) {
+            return Response.status(Response.Status.BAD_REQUEST).entity(resultado.mensagemErro).build();
+        }
+
+        return Response.ok(String.valueOf(resultado.valor)).build();
     }
 }
-
