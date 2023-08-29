@@ -19,7 +19,7 @@ buttons.addEventListener("click", async function(event) {
     if (!isNaN(value) || value === ".") {
         // Se o valor é um número ou um ponto
         inputBuffer += value;
-    } else if (["/", "*", "-", "+"].includes(value)) {
+    } else if (["/", "*","+", "-"].includes(value)) {
         // Se o valor é um operador
         if (firstInput === "") {
             firstInput = inputBuffer;
@@ -29,7 +29,7 @@ buttons.addEventListener("click", async function(event) {
     }else if (value === "=") {
         // Se o valor é o sinal de igual
         if (firstInput !== "") {
-            const response = await fetch(`http://localhost:8080/calculate?first=${firstInput}&second=${inputBuffer}&operator=${operator}`);
+            const response = await fetch(`http://localhost:8080/calculate?first=${encodeURIComponent(firstInput)}&second=${encodeURIComponent(inputBuffer)}&operator=${encodeURIComponent(operator)}`);
             if (response.ok) {
                 inputBuffer = await response.text();
                 firstInput = "";
@@ -46,3 +46,4 @@ buttons.addEventListener("click", async function(event) {
 
     updateDisplay();
 });
+    

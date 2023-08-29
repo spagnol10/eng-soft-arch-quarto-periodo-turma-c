@@ -14,13 +14,11 @@ import jakarta.ws.rs.core.Response;
 public class CalculatorResource {
     @GET
     public Response calculate(@QueryParam("first") float first, @QueryParam("second") float second, @QueryParam("operator") String operator){
-
         Divisao divisao = new Divisao();
         Somar somar = new Somar();
         Substracao substracao = new Substracao();
         Multiplicacao multiplicacao = new Multiplicacao();
         Resultado resultado;
-
         switch (operator) {
             case "+" -> resultado = new Resultado(somar.operacao(first, second));
             case "-" -> resultado = new Resultado(substracao.operacao(first,second));
