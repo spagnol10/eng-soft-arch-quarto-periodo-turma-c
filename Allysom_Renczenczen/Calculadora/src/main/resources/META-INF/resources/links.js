@@ -26,7 +26,7 @@ buttons.addEventListener("click", async function(event) {
             inputBuffer = "";
             operator = value;
         }
-    } else if (value === "=") {
+    }else if (value === "=") {
         // Se o valor é o sinal de igual
         if (firstInput !== "") {
             const response = await fetch(`http://localhost:8080/calculate?first=${firstInput}&second=${inputBuffer}&operator=${operator}`);
@@ -38,6 +38,10 @@ buttons.addEventListener("click", async function(event) {
                 alert("Error: " + await response.text());
             }
         }
+    }else if(value === "CE"){
+        inputBuffer = "";
+        firstInput = "";
+        operator = "";
     }
 
     updateDisplay();
