@@ -1,18 +1,12 @@
 package br.fag.services;
-
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.QueryParam;
-import jakarta.ws.rs.core.Response;
-
-@Path("/divisao")
 public class Divisao {
-    @GET
-    public Response operacao(@QueryParam("primeiroValor")int primeiroValor, @QueryParam("segundoValor") int segundoValor){
-        if(segundoValor <= 0){
-            return Response.status(Response.Status.BAD_REQUEST).entity("O segundo valor não pode ser zero ou negativo").build();
+
+    public int operacao(int primeiroValor,  int segundoValor){
+        try {
+            return primeiroValor / segundoValor;
+        }catch (Exception  e){
+            System.out.println("ERRO - Valor digitado nao e um numero inteiro!");
         }
-        int resultado = primeiroValor / segundoValor;
-        return Response.ok("O resultado da divisão é: " + resultado).build();
+        return 0;
     }
 }
