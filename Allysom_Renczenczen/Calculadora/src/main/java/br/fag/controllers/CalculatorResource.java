@@ -8,14 +8,16 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.Response;
 @Path("/calculate")
-public class CaculatorResource {
+public class CalculatorResource {
     @GET
     public Response calculate(@QueryParam("first") float first, @QueryParam("second") float second, @QueryParam("operator") String operator){
+
         Divisao divisao = new Divisao();
         Somar somar = new Somar();
         Substracao substracao = new Substracao();
         Multiplicacao multiplicacao = new Multiplicacao();
-        Response result;
+        float result;
+
         switch (operator) {
             case "+" -> result = somar.operacao(first, second);
             case "-" -> result = substracao.operacao(first,second);
