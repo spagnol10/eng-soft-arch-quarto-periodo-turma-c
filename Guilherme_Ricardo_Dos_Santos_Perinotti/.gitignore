@@ -1,1 +1,4 @@
 *.class
+*.lst
+*.jar
+*.dat

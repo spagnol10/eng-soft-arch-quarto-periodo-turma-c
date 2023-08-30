@@ -27,13 +27,23 @@ public class CalculadoraController {
   Template calculadora;
 
   @GET
-  public TemplateInstance get(@QueryParam("name") String name) {
+  public TemplateInstance get() {
     List<EnumUserOption> arithmeticOperations = List.of(EnumUserOption.values())
       .stream()
       .map(e -> e.getOption())
       .collect(Collectors.toList());
     
-    return index.data("name", name, "arithmeticOperations", arithmeticOperations);
+    return index.data("name", "Guilherme Perinotti", "arithmeticOperations", arithmeticOperations);
   }
+
+  // @POST
+  // public TemplateInstance post(@QueryParam("name") String name) {
+  //   List<EnumUserOption> arithmeticOperations = List.of(EnumUserOption.values())
+  //     .stream()
+  //     .map(e -> e.getOption())
+  //     .collect(Collectors.toList());
+    
+  //   return index.data("name", name, "arithmeticOperations", arithmeticOperations);
+  // }
 
 }
