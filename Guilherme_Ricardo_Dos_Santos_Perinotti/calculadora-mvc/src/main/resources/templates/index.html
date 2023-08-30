@@ -3,27 +3,40 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Olá {name ?: "Qute"}</title>
-  <link rel="stylesheet" href="page.css">
+  <title>Calculadora</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
   <main class="container">
-    <img src="eng-logo.gif" class="logo-course" />
-    <form class="content" action="/calculator" method="GET" name="todoForm">
-      <div class="input-calcuate">
-        <div class="result">
-          <h2>Calculadora <br />do<br /> <b>{name ?: "Qute"}</b></h2>
-          <p>Resultado é <b>{result}</b></p>
-        </div>
-        <button class="btn-calculate" type="submit">
-          Voltar
-        </button>
-      </div>
+    <!-- <img src="eng-logo.gif" class="logo-course" /> -->
+    <form class="content" action="/calculadora" method="POST" name="todoForm">
+      <h2>Calculadora do <b>{name}</b></h2>
+
+      <label>
+        Primeiro Valor
+        <br>
+        <input type="number" name="primeiroValor" id="primeiroValor" required/>
+      </label>
+
+      <label>
+        Segundo Valor
+        <br>
+        <input type="number" name="segundoValor" id="segundoValor" required/>
+      </label>
+
+      <label>
+        Operação
+        <select name="selectCalculadora" id="selectCalculadora">
+          Operação
+          {#for op in arithmeticOperations}
+          <option value="{op.getKey()}">{op.getValue()}</option>
+          {/for}
+        </select>
+      </label>
+
+      <button class="btn-calculate" type="submit">Calcular</button>
     </form>
-    <div class="bottom-text">
-      <p>Página criada utilizando Quarkus RESTEasy & Qute </p>
-    </div>
   </main>
 </body>
 
