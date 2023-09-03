@@ -10,6 +10,7 @@ import io.quarkus.qute.Template;
 import io.quarkus.qute.TemplateInstance;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.FormParam;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
@@ -27,24 +28,23 @@ public class Calculator {
   @Inject
   Template calculator;
 
-  // @Inject
-  // CalculatorService service;
 
   @GET
   public TemplateInstance get(@QueryParam("name") String name) {
-    List<String> arithmeticOperations = List.of(EnumUserOption.values()).stream()
-    .map(e -> e.getValue())
+    List<EnumUserOption> arithmeticOperations = List.of(EnumUserOption.values()).stream()
+    .map(e -> e.getOperations())
     .collect(Collectors.toList());
 
     return page.data("name", name, "arithmeticOperations", arithmeticOperations);
   }
 
   @POST
-  public TemplateInstance post(@QueryParam("name") String name) {
-    List<String> arithmeticOperations = List.of(EnumUserOption.values()).stream()
-    .map(e -> e.getValue())
-    .collect(Collectors.toList());
+  @Consumes("application/x-www-form-urlencoded")
+  public TemplateInstance post(@FormParam("selection") int operation, @FormParam("primeiroValor") float primeiroValor, @FormParam("segundoValor") float segundoValor) {
+    
+    CalculatorService service = new CalculatorService();
+    float result = service.calculate(primeiroValor, segundoValor, operation);
 
-    return page.data("name", name, "arithmeticOperations", arithmeticOperations);
+    return calculator.data("result", result);
   }
 }

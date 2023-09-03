@@ -13,11 +13,11 @@ import jakarta.ws.rs.core.MediaType;
 import static java.util.Objects.requireNonNull;
 
 @Path("/kirby")
-public class SomePage {
+public class Kirby {
 
     private final Template page;
 
-    public SomePage(Template page) {
+    public Kirby(Template page) {
         this.page = requireNonNull(page, "page is required");
     }
 

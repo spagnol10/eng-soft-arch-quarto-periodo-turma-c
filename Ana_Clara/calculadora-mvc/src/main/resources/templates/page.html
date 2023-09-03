@@ -7,7 +7,7 @@
 </head>
 <body>
   
-  <form action="/calculator" method="post">
+  <form action="" method="post">
     <label>
       Primeiro valor:
       <input type="number" name="primeiroValor" id="primeiroValor">
@@ -18,13 +18,16 @@
       <input type="number" name="segundoValor" id="segundoValor">
     </label>
 
-    <select name="operacoes" id="operacoes">
-      {#for operation in arithmeticOperations}
-      <option value="{operation}">{operation}</option>
-      {/for}
-    </select>
+    <label>
+      <select name="selection">
+        {#for op in arithmeticOperations}
+          <option value="{op.getKey()}">{op.getValue()}</option>
+        {/for}
+      </select>
+    </label>
 
     <input type="submit" value="Calcular">
+    {name}
   </form>
 
 </body>
