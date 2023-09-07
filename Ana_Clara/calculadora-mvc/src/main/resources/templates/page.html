@@ -4,26 +4,30 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home</title>
+  <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
   
   <form action="" method="post">
+    <h2>
+      Calculadora
+    </h2>
     <label>
-      Primeiro valor:
+      <p>Primeiro valor:</p>
       <input type="number" name="primeiroValor" id="primeiroValor">
     </label>
 
     <label>
-      Segundo valor:
+      <p>Segundo valor:</p>
       <input type="number" name="segundoValor" id="segundoValor">
     </label>
 
-    <label>
-      <select name="selection">
+    <label class="selection">
+      <p><select name="selection">
         {#for op in arithmeticOperations}
           <option value="{op.getKey()}">{op.getValue()}</option>
         {/for}
-      </select>
+      </select></p>
     </label>
 
     <input type="submit" value="Calcular">
