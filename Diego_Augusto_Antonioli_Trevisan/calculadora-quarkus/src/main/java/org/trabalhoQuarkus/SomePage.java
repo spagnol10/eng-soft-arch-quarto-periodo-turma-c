@@ -12,8 +12,9 @@ import jakarta.ws.rs.core.MediaType;
 import java.util.ArrayList;
 import java.util.List;
 import org.jboss.resteasy.annotations.jaxrs.QueryParam;
+
 @Path("/SomePage")
-public class SomePage{
+public class SomePage {
 
     @Inject
     Template SomePage;
@@ -33,10 +34,11 @@ public class SomePage{
     @POST
     @Produces(MediaType.TEXT_HTML)
     public TemplateInstance post(
-        @FormParam("operacao") String operacao,
-        @FormParam("n1") Double n1,
-        @FormParam("n2") Double n2) {
+            @FormParam("operacao") String operacao,
+            @FormParam("n1") Double n1,
+            @FormParam("n2") Double n2) {
         Double result = 0.0;
+        String mensagem = "";
         switch (operacao) {
             case "soma":
                 result = n1 + n2;
@@ -50,12 +52,14 @@ public class SomePage{
             case "divisao":
                 if (n2 != 0) {
                     result = n1 / n2;
+                } else {
+                    mensagem ="ERRO! Não pode dividir por 0!";
                 }
                 break;
             default:
                 break;
         }
-        return SomePage.data("result", result);
+        return SomePage.data("result",(mensagem.isEmpty())? result:mensagem);
     }
 
 }
