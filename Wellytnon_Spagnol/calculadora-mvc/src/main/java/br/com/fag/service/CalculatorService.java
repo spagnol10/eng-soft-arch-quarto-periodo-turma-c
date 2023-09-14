@@ -1,6 +1,6 @@
 package br.com.fag.service;
 
-public class CalculadoraService {
+public class CalculatorService {
   public Float calculate(Float primeiro, Float segundo, Integer operation) {
     switch(operation) {
       case 1:
