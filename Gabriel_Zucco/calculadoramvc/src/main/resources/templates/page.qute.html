@@ -2,28 +2,30 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Hello {name ?: "Qute"}</title>
+    <title>Hello {dataDTO.name ?: "Qute"}</title>
     <style>
-        body {
-            background-color: #000;
-            color: #fff;
-        }
-        h1 {
-            color: #4695EB;
-            font-size: 6vw;
-        }
-
-        h1 b {
-            color: #be9100;
-        }
-
-        p {
-            font-size: 2vw;
-        }
     </style>
 </head>
 <body>
-<h1>Hello <b>{name ?: "Qute"}</b></h1>
+<h1>Resultado é <b>{dataDTO.resultado ?: "Realize o Calculo!"}</b></h1>
+
+<form action="/Calculadora" method="post">
+    <label>Valor 1</label>
+    <input name="valor1"/>
+    <br />
+        <label>Valor 2</label>
+        <input name="valor2"/>
+    <br />
+        <select>
+            <option>Soma</option>
+            <option>Sub</option>
+            <option>Mult</option>
+            <option>Div</option>
+        </select>
+    <br />
+    <button>Calcular</button>
+</form>
+
 
 <p>Create your web page using Quarkus RESTEasy & Qute</p>
 </body>
