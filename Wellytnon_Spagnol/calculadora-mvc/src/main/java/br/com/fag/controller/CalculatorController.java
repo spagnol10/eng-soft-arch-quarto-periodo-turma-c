@@ -1,51 +1,46 @@
 package br.com.fag.controller;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 import br.com.fag.model.EnumUserOption;
 import br.com.fag.service.CalculatorService;
 import io.quarkus.qute.Template;
 import io.quarkus.qute.TemplateInstance;
 import jakarta.inject.Inject;
-import jakarta.ws.rs.Consumes;
-import jakarta.ws.rs.FormParam;
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.POST;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Consumes(MediaType.TEXT_HTML)
 @Produces(MediaType.TEXT_HTML)
 @Path("/")
 public class CalculatorController {
-  
-  @Inject
-  Template index;
 
-  @Inject
-  Template calculadora;
+    @Inject
+    Template index;
 
-  @GET
-  public TemplateInstance get() {
-    List<EnumUserOption> arithmeticOperations = List.of(EnumUserOption.values())
-      .stream()
-      .map(e -> e.getOption())
-      .collect(Collectors.toList());
-    
-    return index.data("name", "Wellyton Spagnol", "arithmeticOperations", arithmeticOperations);
-  }
+    @Inject
+    Template calculadora;
 
-  @POST
-  @Consumes("application/x-www-form-urlencoded")
-  public TemplateInstance post(@FormParam("primeiroValor") Float primeiro, @FormParam("segundoValor") Float segundo, @FormParam("selectCalculadora") Integer operation ) {
+    @GET
+    public TemplateInstance get() {
+        List<EnumUserOption> arithmeticOperations = List.of(EnumUserOption.values())
+                .stream()
+                .map(e -> e.getOption())
+                .collect(Collectors.toList());
 
-    CalculatorService service = new CalculatorService();
+        return index.data("name", "Wellyton Spagnol", "arithmeticOperations", arithmeticOperations);
+    }
 
-    Float result = service.calculate(primeiro, segundo, operation);
-    
-    return calculadora.data("result", result);
-  }
+    @POST
+    @Consumes("application/x-www-form-urlencoded")
+    public TemplateInstance post(@FormParam("primeiroValor") Float primeiro, @FormParam("segundoValor") Float segundo, @FormParam("selectCalculadora") Integer operation) {
+
+        CalculatorService service = new CalculatorService();
+
+        Float result = service.calculate(primeiro, segundo, operation);
+
+        return calculadora.data("result", result);
+    }
 
 }
