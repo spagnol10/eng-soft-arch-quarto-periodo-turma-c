@@ -1,13 +1,10 @@
 package com.fag.service;
 
 import com.fag.model.EnumOperation;
-import com.fag.model.Item;
 import jakarta.enterprise.context.ApplicationScoped;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.Arrays;
-import java.util.List;
 
 @ApplicationScoped
 public class CalculadoraService {

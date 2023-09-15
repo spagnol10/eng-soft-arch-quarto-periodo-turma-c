@@ -1,7 +1,5 @@
 package com.fag.model;
 
-import java.util.Arrays;
-
 public enum EnumOperation implements IEnum<String> {
     ADICAO("ADICAO", "Adição"),
     SUBTRACAO("SUBTRACAO", "Subtração"),
@@ -24,13 +22,6 @@ public enum EnumOperation implements IEnum<String> {
     @Override
     public String getValue() {
         return value;
-    }
-
-    public static EnumOperation findByValue(String value) {
-        return Arrays.stream(EnumOperation.values())
-                .filter(operation -> value.equals(operation.getValue()))
-                .findAny()
-                .orElse(EnumOperation.ADICAO);
     }
 
 }

@@ -1,13 +1,13 @@
 package com.fag.controller;
 
 import com.fag.model.EnumOperation;
+import com.fag.model.IEnum;
 import com.fag.service.CalculadoraService;
+import io.quarkus.qute.CheckedTemplate;
+import io.quarkus.qute.TemplateInstance;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
-
-import io.quarkus.qute.TemplateInstance;
-import io.quarkus.qute.CheckedTemplate;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -19,12 +19,6 @@ public class CalculadoraResource {
 
     @Inject
     CalculadoraService service;
-
-    @CheckedTemplate
-    public static class Templates {
-        public static native TemplateInstance page(String name, List<String> operations);
-        public static native TemplateInstance calculator(BigDecimal result, String name);
-    }
 
     @GET
     @Produces(MediaType.TEXT_HTML)
@@ -49,9 +43,16 @@ public class CalculadoraResource {
             throw new RuntimeException("Erro! Segundo número inválido!");
         }
 
-        BigDecimal result = service.calculate(value1, value2, EnumOperation.findByValue(operation));
+        BigDecimal result = service.calculate(value1, value2, IEnum.findByValue(EnumOperation.class, operation));
 
         return Templates.calculator(result, null);
+    }
+
+    @CheckedTemplate
+    public static class Templates {
+        public static native TemplateInstance page(String name, List<String> operations);
+
+        public static native TemplateInstance calculator(BigDecimal result, String name);
     }
 
 }
