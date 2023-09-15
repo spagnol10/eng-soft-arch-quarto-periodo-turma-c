@@ -12,7 +12,7 @@
 }
 
 main {
-    background-color: rgba(177, 177, 177, 0.73);
+    background-color: rgba(177, 177, 177, 0.78);
     max-width: 600px;
     padding: 40px;
     display: flex;
@@ -51,7 +51,7 @@ h2 {
 }
 
 label {
-    width: 40%;
+    width: 80%;
     font-weight: 300;
     font-size: 20px;
     margin: 5px 0px;
@@ -86,4 +86,25 @@ button, select, input {
 
 select, input {
     margin: 10px 0px;
+    box-shadow: 0 0 0 0;
+    outline: none;
+    background: transparent;
+    border: 1.5px solid black;
+}
+
+input:focus {
+    border: 2px solid #12284a;
+}
+
+.btn-calculate {
+    transition: 0.3s all ease-in-out;
+    border-radius: 5px;
+}
+
+.btn-calculate:hover {
+    transform: scale(1.1);
+}
+
+.label-title {
+    font-weight: bold;
 }

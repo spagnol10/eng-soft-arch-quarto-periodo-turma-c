@@ -41,7 +41,9 @@ public class CalculatorController {
 
         Float result = service.calculate(primeiro, segundo, operation);
 
-        return calculadora.data("result", result);
+        return calculadora.data("name", "Resultado", "result", result);
+
+
     }
 
 }
