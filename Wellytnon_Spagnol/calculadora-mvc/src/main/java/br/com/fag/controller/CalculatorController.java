@@ -8,6 +8,7 @@ import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,9 +25,9 @@ public class CalculatorController {
 
     @GET
     public TemplateInstance get() {
-        List<EnumUserOption> arithmeticOperations = List.of(EnumUserOption.values())
+        var arithmeticOperations = Arrays.asList(EnumUserOption.values())
                 .stream()
-                .map(e -> e.getOption())
+                .map(EnumUserOption::getOption)
                 .collect(Collectors.toList());
 
         return index.data("name", "Wellyton Spagnol", "arithmeticOperations", arithmeticOperations);
