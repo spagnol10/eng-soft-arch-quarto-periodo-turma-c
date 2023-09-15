@@ -13,22 +13,22 @@ import java.util.ArrayList;
 import java.util.List;
 import org.jboss.resteasy.annotations.jaxrs.QueryParam;
 
-@Path("/SomePage")
+@Path("/Calculadora")
 public class SomePage {
 
     @Inject
-    Template SomePage;
+    Template Calculadora;
 
     @GET
     @Produces(MediaType.TEXT_HTML)
-    public TemplateInstance SomePage(@QueryParam String param) {
+    public TemplateInstance Calculadora(@QueryParam String param) {
         List<OpcaoSelect> operacao = new ArrayList<OpcaoSelect>();
         operacao.add(new OpcaoSelect("soma", "Soma"));
         operacao.add(new OpcaoSelect("subtracao", "Subtração"));
         operacao.add(new OpcaoSelect("multiplicacao", "Multiplicação"));
         operacao.add(new OpcaoSelect("divisao", "Divisão"));
 
-        return SomePage.data("operacao", "operacao");
+        return Calculadora.data("operacao", "operacao");
     }
 
     @POST
@@ -59,7 +59,7 @@ public class SomePage {
             default:
                 break;
         }
-        return SomePage.data("result",(mensagem.isEmpty())? result:mensagem);
+        return Calculadora.data("result",(mensagem.isEmpty())? result:mensagem);
     }
 
 }

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora com Quarkus</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+        }
+
+        h1 {
+            color: #4695EB;
+            font-size: 6vw;
+        }
+
+        h1 b {
+            color: #be9100;
+        }
+
+        p {
+            font-size: 2vw;
+        }
+    </style>
+</head>
+
+<body>
+    <div name="TUDO">
+        <div name="CALCULADORA">
+            <h1>RESULTADO: <b>{result ?: "Qute"}</b></h1>
+            <div name="FORM">
+                <form action="" method="post">
+                    <div name="DIV-FORM">
+                        <label name="valor1">Valor 1</label>
+                        <input name="n1">
+                        <select name="operacao">
+                            <option value="soma">+</option>
+                            <option value="subtracao">-</option>
+                            <option value="multiplicacao">*</option>
+                            <option value="divisao">/</option>
+                        </select>
+                        <label name="valor2">Valor 2</label>
+                        <input name="n2">
+                    </div>
+                    <div name="DIV-BOTAO">
+                        <button name="botao">Calcular</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <p>Calculadora criada com Quarkus RESTEasy & Qute</p>
+    </div>
+</body>
+
+</html>
