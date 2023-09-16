@@ -1,4 +1,4 @@
-package org.trabalhoQuarkus;
+package org.trabalhoQuarkus.Model;
 
 public class OpcaoSelect {
     private String valor;

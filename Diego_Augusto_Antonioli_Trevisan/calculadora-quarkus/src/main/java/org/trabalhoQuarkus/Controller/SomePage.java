@@ -1,4 +1,4 @@
-package org.trabalhoQuarkus;
+package org.trabalhoQuarkus.Controller;
 
 import io.quarkus.qute.Template;
 import io.quarkus.qute.TemplateInstance;
@@ -12,6 +12,7 @@ import jakarta.ws.rs.core.MediaType;
 import java.util.ArrayList;
 import java.util.List;
 import org.jboss.resteasy.annotations.jaxrs.QueryParam;
+import org.trabalhoQuarkus.Model.OpcaoSelect;
 
 @Path("/Calculadora")
 public class SomePage {

@@ -6,13 +6,35 @@
     <title>Calculadora com Quarkus</title>
     <style>
         body {
-            background-color: #000;
+            background: black;
             color: #fff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        #DIV-BOTAO{
+            margin-bottom: 100PX;
+        }
+        #TUDO {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: max-content;
+        }
+
+        #CALCULADORA {
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px;
+            text-align: center;
         }
 
         h1 {
             color: #4695EB;
-            font-size: 6vw;
+            font-size: 4vw;
         }
 
         h1 b {
@@ -20,9 +42,44 @@
         }
 
         p {
-            font-size: 2vw;
+            font-size: 1.5vw;
+            margin-bottom: 0vmax;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        label {
+            margin: 10px;
+            font-size: 1.2vw;
+        }
+
+        input,
+        select {
+            padding: 5px;
+            font-size: 1.2vw;
+            border: 1px solid #888;
+            border-radius: 5px;
+            margin: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1.5vw;
+            background-color: #4695EB;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 30px;
+            margin-bottom: auto;
         }
     </style>
+
 </head>
 
 <body>
@@ -33,7 +90,7 @@
                 <form action="" method="post">
                     <div name="DIV-FORM">
                         <label name="valor1">Valor 1</label>
-                        <input name="n1">
+                        <input type="number" name="n1" >
                         <select name="operacao">
                             <option value="soma">+</option>
                             <option value="subtracao">-</option>
@@ -41,7 +98,7 @@
                             <option value="divisao">/</option>
                         </select>
                         <label name="valor2">Valor 2</label>
-                        <input name="n2">
+                        <input type="number" name="n2">
                     </div>
                     <div name="DIV-BOTAO">
                         <button name="botao">Calcular</button>
@@ -49,8 +106,8 @@
                 </form>
             </div>
         </div>
-        <p>Calculadora criada com Quarkus RESTEasy & Qute</p>
     </div>
+    <p>Calculadora criada com Quarkus RESTEasy & Qute</p>
 </body>
 
 </html>
