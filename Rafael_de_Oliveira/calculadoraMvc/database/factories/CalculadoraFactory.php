@@ -15,10 +15,10 @@ class CalculadoraFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    public function definition(): array
-    {
-        return [
-            'ultimo_resultado' => 0
-        ];
-    }
+    // public function definition(): array
+    // {
+    //     return [
+    //         'ultimo_resultado' => 0
+    //     ];
+    // }
 }

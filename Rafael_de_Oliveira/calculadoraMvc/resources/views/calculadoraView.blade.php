@@ -14,37 +14,39 @@
     <header class="border-bottom mb-5" style="text-align: center;">
         <h1 class="h1"> Calculadora MVC </h1>
     </header>
-    <div class="container">
 
-        <form action="/calculadora" method="POST">
+    <div class="container">
+        <form action="/" method="POST">
             @csrf
-            <div class="">
-                <div class="mb-3">
-                    <input type="number" class="form-control" name="num1" placeholder="Valor 1">
-                </div>
-                <div class="mb-3">
-                    <input type="number" class="form-control" name="num2" placeholder="Valor 2">
-                </div>
-                <div class="mb-3">
-                    <select class="form-select" name="operacao">
-                        <option value="soma">Soma</option>
-                        <option value="subtracao">Subtração</option>
-                        <option value="multiplicacao">Multiplicação</option>
-                        <option value="divisao">Divisão</option>
-                    </select>
-                </div>
-                <div class="mb-3">
-                    <button type="submit" class="btn btn-primary">Calcular</button>
+            <div class="card">
+                <div class="card-body">
+                    <div class="mb-3">
+                        <input type="text" class="form-control" name="num1" placeholder="Valor 1">
+                    </div>
+
+                    <div class="mb-3">
+                        <input type="text" class="form-control" name="num2" placeholder="Valor 2">
+                    </div>
+                    <div class="mb-3">
+                        <select class="form-select" name="operacao">
+                            <option value="soma">Soma</option>
+                            <option value="subtracao">Subtração</option>
+                            <option value="multiplicacao">Multiplicação</option>
+                            <option value="divisao">Divisão</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-primary">Calcular</button>
+                    </div>
                 </div>
             </div>
         </form>
 
         <div class="card mt-4 shadow">
-            <div class="card-body justify-content-between d-flex">
+            <div class="card-body">
               <span> Resultado: {{ $resultado }} </span>
-              <span> Último resultado: 0 </span>
             </div>
-          </div>
+        </div>
 
     </div>
 </body>

@@ -7,12 +7,7 @@ use Illuminate\Http\Request;
 
 class CalculadoraController extends Controller
 {
-    // public function index()
-    // {
-    //     return view('calculadoraView', []);
-    // }
 
-    //faça função de calculadora
     public function index(Request $request)
     {
         $num1 = $request->input('num1');
@@ -35,18 +30,7 @@ class CalculadoraController extends Controller
                 break;
         }
 
-        $ultimoResultado = $resultado;
-
-        //Registro do último resultado no banco de dados
-        $calculadora = DB::table('calculadora_mvc')
-            ->where('id', 1)
-            ->first();
-
-        $calculadora->ultimo_resultado = $ultimoResultado;
-        $calculadora->save();
-
-
-        return view('calculadoraView', ['resultado' => $resultado, 'ultimoResultado' => $calculadora]);
+        return view('calculadoraView', ['resultado' => $resultado]);
     }
 
 }

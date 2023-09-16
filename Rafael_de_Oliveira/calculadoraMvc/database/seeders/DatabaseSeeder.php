@@ -19,8 +19,8 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        \App\Http\Controllers\CalculadoraController::factory()->create([
-            'ultimo_resultado' => 0
-        ]);
+        // \App\Http\Controllers\CalculadoraController::factory()->create([
+        //     'ultimo_resultado' => 0
+        // ]);
     }
 }
