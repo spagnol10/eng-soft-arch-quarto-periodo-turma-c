@@ -1,8 +1,10 @@
 package com.fag.controller;
 
+import com.fag.dto.EquacaoDTO;
 import com.fag.model.EnumOperation;
 import com.fag.model.IEnum;
 import com.fag.service.CalculadoraService;
+import com.fag.service.EquacaoService;
 import io.quarkus.qute.CheckedTemplate;
 import io.quarkus.qute.TemplateInstance;
 import jakarta.inject.Inject;
@@ -18,7 +20,10 @@ import java.util.stream.Stream;
 public class CalculadoraResource {
 
     @Inject
-    CalculadoraService service;
+    CalculadoraService calculadoraService;
+
+    @Inject
+    EquacaoService equacaoService;
 
     @GET
     @Produces(MediaType.TEXT_HTML)
@@ -39,11 +44,10 @@ public class CalculadoraResource {
         BigDecimal value1 = new BigDecimal(num1);
         BigDecimal value2 = new BigDecimal(num2);
 
-        if (value2.equals(BigDecimal.ZERO) && operation.equals("Divisão")) {
-            throw new RuntimeException("Erro! Segundo número inválido!");
-        }
+        EnumOperation enumOperation = IEnum.findByValue(EnumOperation.class, operation);
 
-        BigDecimal result = service.calculate(value1, value2, IEnum.findByValue(EnumOperation.class, operation));
+        BigDecimal result = calculadoraService.calculate(value1, value2, enumOperation);
+        equacaoService.createEquacao(new EquacaoDTO(value1, value2, enumOperation, result));
 
         return Templates.calculator(result, null);
     }
