@@ -43,8 +43,12 @@ public class CalculadoraController {
 
     CalculadoraService service = new CalculadoraService();
 
-    Float result = service.calculate(primeiro, segundo, operation);
-
+    String result = "";
+    try {
+      result = service.calculate(primeiro, segundo, operation).toString();
+    } catch (Exception e) {
+      result = e.getMessage();
+    }
     
     return calculadora.data("result", result);
   }
