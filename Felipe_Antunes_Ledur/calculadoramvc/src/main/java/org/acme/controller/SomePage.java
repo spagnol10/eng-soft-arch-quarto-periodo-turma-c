@@ -9,7 +9,6 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.stream.Collectors;
 
 @Consumes(MediaType.TEXT_HTML)
