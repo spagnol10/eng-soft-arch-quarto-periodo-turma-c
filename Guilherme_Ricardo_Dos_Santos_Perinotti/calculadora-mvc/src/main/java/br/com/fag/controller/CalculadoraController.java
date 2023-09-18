@@ -3,7 +3,7 @@ package br.com.fag.controller;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import br.com.fag.model.EnumUserOption;
+import br.com.fag.model.Operacoes;
 import br.com.fag.service.CalculadoraService;
 import io.quarkus.qute.Template;
 import io.quarkus.qute.TemplateInstance;
@@ -29,23 +29,24 @@ public class CalculadoraController {
 
   @GET
   public TemplateInstance get() {
-    List<EnumUserOption> arithmeticOperations = List.of(EnumUserOption.values())
+    List<Operacoes> operacoes = List.of(Operacoes.values())
       .stream()
       .map(e -> e.getOption())
       .collect(Collectors.toList());
     
-    return index.data("name", "Guilherme Perinotti", "arithmeticOperations", arithmeticOperations);
+    return index.data("name", "Guilherme Perinotti", "operacoes", operacoes);
   }
 
   @POST
   @Consumes("application/x-www-form-urlencoded")
-  public TemplateInstance post(@FormParam("primeiroValor") Float primeiro, @FormParam("segundoValor") Float segundo, @FormParam("selectCalculadora") Integer operation ) {
+  public TemplateInstance post(@FormParam("primeiroValor") Float primeiro, @FormParam("segundoValor") Float segundo, @FormParam("selectCalculadora") Integer opcao) {
 
-    CalculadoraService service = new CalculadoraService();
+    CalculadoraService calculadoraService = new CalculadoraService();
+    Operacoes operation = Operacoes.values()[opcao - 1];
 
     String result = "";
     try {
-      result = service.calculate(primeiro, segundo, operation).toString();
+      result = calculadoraService.calcular(primeiro, segundo, operation).toString();
     } catch (Exception e) {
       result = e.getMessage();
     }

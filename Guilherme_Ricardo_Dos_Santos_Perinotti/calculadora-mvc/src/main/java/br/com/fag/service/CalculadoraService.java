@@ -1,8 +1,10 @@
 package br.com.fag.service;
 
+import br.com.fag.model.Operacoes;
+
 public class CalculadoraService {
-  public Float calculate(Float primeiro, Float segundo, Integer operation) {
-    switch(operation) {
+  public Float calcular(Float primeiro, Float segundo, Operacoes operation) {
+    switch(operation.getKey()) {
       case 1:
         return primeiro + segundo;
 
@@ -14,7 +16,7 @@ public class CalculadoraService {
 
       case 4:
       if(segundo == 0) {
-        throw new ArithmeticException("Não pode dividir por zero");
+        throw new ArithmeticException("Não é possível dividir por zero");
       }
       return primeiro / segundo;
     }
