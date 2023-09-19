@@ -2,7 +2,7 @@ package org.acme.services;
 
 public class CalculatorService {
   
-  public float calculate(float valueOne, float valueTwo, int operation) {
+  public Float calculate(float valueOne, float valueTwo, int operation) {
     if (operation == 1) {
       return valueOne + valueTwo;
     }
@@ -13,8 +13,11 @@ public class CalculatorService {
       return valueOne * valueTwo;
     }
     if (operation == 4) {
+      if (valueTwo == 0) {
+        throw new ArithmeticException("Não é possível a divisão por zero.");
+      }
       return valueOne / valueTwo;
     }
-    return 0;
+    return 0f;
   }
 }

@@ -43,7 +43,14 @@ public class Calculator {
   public TemplateInstance post(@FormParam("selection") int operation, @FormParam("primeiroValor") float primeiroValor, @FormParam("segundoValor") float segundoValor) {
     
     CalculatorService service = new CalculatorService();
-    float result = service.calculate(primeiroValor, segundoValor, operation);
+
+    String result = "";
+    
+    try {
+      result = service.calculate(primeiroValor, segundoValor, operation).toString();
+    } catch (Exception e) {
+      result = e.getMessage();
+    }
 
     return calculator.data("result", result);
   }
