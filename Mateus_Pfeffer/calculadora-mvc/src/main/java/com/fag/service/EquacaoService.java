@@ -2,21 +2,19 @@ package com.fag.service;
 
 import com.fag.dto.EquacaoDTO;
 import com.fag.model.Equacao;
+import com.fag.repository.EquacaoRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
 @ApplicationScoped
 public class EquacaoService {
 
-    @PersistenceContext
-    private final EntityManager em;
-
     @Inject
-    public EquacaoService(EntityManager em) {
-        this.em = em;
-    }
+    EquacaoRepository repository;
 
     public Equacao createEquacao(EquacaoDTO dto) {
         Equacao newEquacao = new Equacao(dto);
@@ -26,7 +24,7 @@ public class EquacaoService {
     }
 
     public void save(Equacao equacao) {
-        this.em.persist(equacao);
+        this.repository.persist(equacao);
     }
 
 }
