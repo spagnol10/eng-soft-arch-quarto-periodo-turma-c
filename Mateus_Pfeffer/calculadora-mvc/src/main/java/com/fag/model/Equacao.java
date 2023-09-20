@@ -5,11 +5,12 @@ import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.PersistenceUnit;
 import javax.persistence.Table;
 import java.math.BigDecimal;
 
-@Entity(name = "equacao")
-@Table(name = "equacao")
+@PersistenceUnit(name = "test")
+@Entity
 public class Equacao extends PanacheEntity {
 
     @Column(length = 14, nullable = false)
