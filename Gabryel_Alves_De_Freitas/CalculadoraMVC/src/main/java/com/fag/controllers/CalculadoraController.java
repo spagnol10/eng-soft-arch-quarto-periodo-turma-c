@@ -18,13 +18,6 @@ import com.fag.model.OperacaoEnum;
 
 @Path("/calculadora")
 public class CalculadoraController {
-    // nome tem que ser igual ao do html
-    //recebe valores setando na Url ex: ?name=Teste&...
-    // ./mvnw quarkus:dev
-    //criar um dto para retornar um objeto
-    //css no META-INF
-    
-    //da pra fazer recuperar os valores anteriores
 
     private final Template calculadora;
 
