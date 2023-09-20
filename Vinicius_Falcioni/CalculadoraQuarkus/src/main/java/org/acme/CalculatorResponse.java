@@ -1,18 +1,23 @@
 package org.acme;
 
-public class OperationResult {
+public class CalculatorResponse {
 
     private double result;
     private String message;
 
-    public OperationResult() {
+    // Construtores
+    public CalculatorResponse() {
     }
 
-    public OperationResult(double result, String message) {
+    public CalculatorResponse(double result) {
         this.result = result;
+    }
+
+    public CalculatorResponse(String message) {
         this.message = message;
     }
 
+    // Getters e setters
     public double getResult() {
         return result;
     }

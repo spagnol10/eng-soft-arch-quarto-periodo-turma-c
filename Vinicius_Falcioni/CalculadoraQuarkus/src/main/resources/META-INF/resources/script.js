@@ -1,119 +1,57 @@
-document.addEventListener('DOMContentLoaded', function() {
-    let currentInput = "";
-    let previousInput = "";
-    let currentOperation = null;
+let currentInput = "";
+let firstNumber = null;
+let currentOperation = null;
 
-    const display = document.getElementById("display");
+function appendCharacter(character) {
+    currentInput += character;
+    updateDisplay();
+}
 
-    document.querySelectorAll(".calculator-btn").forEach(button => {
-        button.addEventListener("click", handleButtonClick);
-    });
+function updateDisplay() {
+    document.getElementById('display').value = currentInput;
+}
 
-    document.addEventListener('keydown', function(event) {
-        const key = event.key;
-        if ((key >= '0' && key <= '9') || key === ".") {
-            handleInput(key);
-        } else if (['+', '-', '*', '/'].includes(key)) {
-            handleOperator(key);
-        } else if (key === 'Enter' || key === '=') {
-            handleEquals();
-        } else if (key === 'Backspace' || key === 'Delete') {
-            clearAll();
-        }
-    });
-
-    function handleButtonClick() {
-        const type = this.getAttribute("data-type");
-        const value = this.getAttribute("data-value");
-
-        if (type === "number") {
-            handleInput(value);
-        } else if (type === "operator") {
-            handleOperator(value);
-        } else if (type === "equals") {
-            handleEquals();
-        } else if (type === "decimal") {
-            handleDecimal(value);
-        }
-    }
-
-    function handleButtonClick() {
-        const type = this.getAttribute("data-type");
-        const value = this.getAttribute("data-value");
-    
-        if (type === "number") {
-            handleInput(value);
-        } else if (type === "operator") {
-            handleOperator(value);
-        } else if (type === "equals") {
-            handleEquals();
-        } else if (type === "decimal") {
-            handleDecimal(value);
-        } else if (type === "reset") {
-            clearAll();
-        }
-    }
-
-    function handleInput(value) {
-        currentInput += value;
-        updateDisplay();
-    }
-
-    function handleOperator(value) {
-        if (previousInput && currentOperation && currentInput) {
-            performOperation();
-        }
-        previousInput = currentInput;
+function setOperation(operation) {
+    if (firstNumber === null) {
+        firstNumber = currentInput;
+        currentOperation = operation;
         currentInput = "";
-        currentOperation = value;
     }
+}
 
-    function handleEquals() {
-        if (previousInput && currentOperation && currentInput) {
-            performOperation();
-            currentOperation = null;
+function calculate() {
+    const requestBody = {
+        num1: parseFloat(firstNumber),
+        num2: parseFloat(currentInput),
+        operation: currentOperation
+    };
+
+    fetch("/calculate", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(requestBody)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.message) {
+            alert(data.message);
+        } else {
+            currentInput = data.result.toString();
             updateDisplay();
+            resetCalculationState();
         }
-    }
+    });
+}
 
-    function handleDecimal(value) {
-        if (!currentInput.includes('.')) {
-            currentInput += value;
-            updateDisplay();
-        }
-    }
+function resetCalculationState() {
+    currentInput = "";
+    firstNumber = null;
+    currentOperation = null;
+}
 
-    function performOperation() {
-        switch(currentOperation) {
-            case "+":
-                currentInput = (parseFloat(previousInput) + parseFloat(currentInput)).toString();
-                break;
-            case "-":
-                currentInput = (parseFloat(previousInput) - parseFloat(currentInput)).toString();
-                break;
-            case "*":
-                currentInput = (parseFloat(previousInput) * parseFloat(currentInput)).toString();
-                break;
-            case "/":
-                if (currentInput === "0") {
-                    alert("Cannot divide by zero!");
-                    clearAll();
-                } else {
-                    currentInput = (parseFloat(previousInput) / parseFloat(currentInput)).toString();
-                }
-                break;
-        }
-        previousInput = "";
-    }
-
-    function updateDisplay() {
-        display.value = currentInput;
-    }
-
-    function clearAll() {
-        currentInput = "";
-        previousInput = "";
-        currentOperation = null;
-        updateDisplay();
-    }
-});
+function reset() {
+    resetCalculationState();
+    updateDisplay();
+}
