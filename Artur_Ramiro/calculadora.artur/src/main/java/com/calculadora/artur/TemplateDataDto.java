@@ -1,7 +1,9 @@
 package com.calculadora.artur;
 
 public class TemplateDataDto {
+    
     private String name;
+
     private Double resultado;
 
     public String getName(){
@@ -19,6 +21,5 @@ public class TemplateDataDto {
     public void setResultado(Double resultado){
         this.resultado = resultado;
     }
-
 
 }

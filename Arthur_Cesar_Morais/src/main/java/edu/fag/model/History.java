@@ -4,9 +4,11 @@ import jakarta.persistence.*;
 
 import java.util.Date;
 
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+
 @Entity
 @Table(name = "history")
-public class History {
+public class History extends PanacheEntityBase {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -27,17 +27,12 @@ public class Controller {
         return page.data("name", null);
     }
 
-
     @POST
     @Produces(MediaType.TEXT_HTML)
     public TemplateInstance calcular(
             @FormParam("valor1") Double valor1,
             @FormParam("valor2") Double valor2,
             @FormParam("opcao") String opcao) {
-        System.out.println(valor1);
-        System.out.println(valor2);
-        System.out.println(opcao);
-
         TemplateDataDto dto = new TemplateDataDto();
        
         switch (opcao) {
@@ -58,7 +53,6 @@ public class Controller {
             }           
                 break;
         }
-        System.out.println(dto.getResultado());
         
         return page.data("resultado", dto);
     }
