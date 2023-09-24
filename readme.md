@@ -2,7 +2,7 @@
 
 ### Destaques do Repo✨
 
-**Abaixo estão os 8 trabalhos, de alunos que fizeram tanto um front quanto um back-end bonito.**
+**Abaixo estão os 8 trabalhos de alunos que fizeram tanto um front quanto um back-end bonito.**
 
 Arthur Cesar De Morais - Lançou a braba e fez a calculadora do windows, e ainda fez persistência🔥
 ![Arthur Cesar De Morais - 01](https://github.com/Sandrolaxx/eng-soft-arch-quarto-periodo-turma-c/assets/61207420/c672704b-0552-4310-b790-7800831970e1)
