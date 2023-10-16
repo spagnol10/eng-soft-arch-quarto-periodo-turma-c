@@ -1,0 +1,17 @@
+version: "3"
+services:
+  database:
+    image: postgres:latest
+    ports:
+      - 5432:5432
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: root
+      POSTGRES_USER: root
+      POSTGRES_DB: postgres
+  web:
+    image: nginx:latest
+    ports:
+      - "80:80"
