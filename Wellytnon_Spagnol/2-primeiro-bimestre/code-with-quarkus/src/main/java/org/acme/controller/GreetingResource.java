@@ -109,8 +109,9 @@ public class GreetingResource {
     @DELETE
     @Path("/payment")
     @Produces(MediaType.APPLICATION_JSON)
+    @Transactional
     public Response delete(@HeaderParam("id") String id) {
-        return Response.ok().entity(paymentRepository.delete(id)).build();
+        return Response.ok().entity(paymentRepository.deletePayment(id)).build();
     }
 
 }

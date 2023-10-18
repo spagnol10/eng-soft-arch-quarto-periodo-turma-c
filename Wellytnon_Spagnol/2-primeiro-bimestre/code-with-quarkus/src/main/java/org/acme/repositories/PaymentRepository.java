@@ -26,7 +26,7 @@ public class PaymentRepository implements PanacheRepositoryBase<Payment, Long> {
         return update("receipt = 'Wellynton Spagnol' where id = ?1", Long.parseLong(id));
     }
 
-    public Long delete(String id) {
+    public Long deletePayment(String id) {
         return delete("id", Long.parseLong(id));
     }
 }
