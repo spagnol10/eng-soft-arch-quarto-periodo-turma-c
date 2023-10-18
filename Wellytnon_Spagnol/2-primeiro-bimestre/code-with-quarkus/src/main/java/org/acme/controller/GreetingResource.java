@@ -2,10 +2,7 @@ package org.acme.controller;
 
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.POST;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.Form;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
@@ -42,7 +39,6 @@ public class GreetingResource {
         entity.setToken(dto.getAccess_token());
         entity.persist();
 
-
         return Response.ok(getToken()).build();
     }
 
@@ -74,7 +70,6 @@ public class GreetingResource {
     @Transactional
     public Response payment(ConsultBoletoDto dto) {
         PaymentResponseDTO response = restClient.payment("Bearer " + getToken().getAccess_token(), dto);
-
         Payment entity = new Payment();
 
         entity.setAmount(dto.getBill().getValue());
@@ -84,4 +79,20 @@ public class GreetingResource {
         entity.persist();
         return Response.ok().entity(response).build();
     }
+
+    @GET
+    @Path("/payment/find")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response findById(@HeaderParam("id") String id) {
+        return Response.ok().entity(Payment.find("id", Long.parseLong(id)).firstResult()).build();
+    }
+
+    @GET
+    @Path("/payment/list")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response listPayments() {
+        return Response.ok().entity(Payment.listAll()).build();
+    }
+
+
 }
