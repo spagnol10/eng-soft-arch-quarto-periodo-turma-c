@@ -12,7 +12,7 @@ public class PaymentResponseDTO {
     private String settleDate;
     private String createDate;
     private BigDecimal transactionId;
-    private String Urlreceipt;
+    private String urlreceipt;
     private String errorCode;
     private String message;
     private int status;
@@ -82,11 +82,11 @@ public class PaymentResponseDTO {
     }
 
     public String getUrlreceipt() {
-        return Urlreceipt;
+        return urlreceipt;
     }
 
     public void setUrlreceipt(String urlreceipt) {
-        Urlreceipt = urlreceipt;
+        this.urlreceipt = urlreceipt;
     }
 
     public String getErrorCode() {

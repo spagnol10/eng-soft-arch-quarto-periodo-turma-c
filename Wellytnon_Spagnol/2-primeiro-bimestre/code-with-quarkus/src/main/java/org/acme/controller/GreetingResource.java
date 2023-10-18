@@ -76,12 +76,12 @@ public class GreetingResource {
         PaymentResponseDTO response = restClient.payment("Bearer " + getToken().getAccess_token(), dto);
 
         Payment entity = new Payment();
+
         entity.setAmount(dto.getBill().getValue());
         entity.setDigitable(dto.getData().getDigitable());
-        entity.setReceipt(response.getReceipt().getReceiptFormatted());
+        entity.setReceipt(response.getReceipt().getReceiptformatted());
 
         entity.persist();
-        return Response.ok(response).build();
+        return Response.ok().entity(response).build();
     }
-
 }

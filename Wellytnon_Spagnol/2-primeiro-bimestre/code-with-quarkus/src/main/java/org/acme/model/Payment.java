@@ -16,7 +16,7 @@ public class Payment extends PanacheEntityBase {
     @Column(name = "ID")
     private Long id;
 
-    @Column(name = "PAYMENT", length = 4000)
+    @Column(name = "PAYMENT", length = 5000)
     private String receipt;
 
     @Column(name = "DIGITABLE")

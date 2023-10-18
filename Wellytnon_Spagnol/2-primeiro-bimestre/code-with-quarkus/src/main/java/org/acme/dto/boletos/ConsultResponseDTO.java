@@ -15,6 +15,8 @@ public class ConsultResponseDTO {
     private BigDecimal type;
     private BigDecimal value;
     private String errorCode;
+    private String message;
+    private BigDecimal status;
     private RegisterData registerData;
 
     public String getAssignor() {
@@ -105,6 +107,22 @@ public class ConsultResponseDTO {
         this.errorCode = errorCode;
     }
 
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public BigDecimal getStatus() {
+        return status;
+    }
+
+    public void setStatus(BigDecimal status) {
+        this.status = status;
+    }
+
     public RegisterData getRegisterData() {
         return registerData;
     }
@@ -112,5 +130,4 @@ public class ConsultResponseDTO {
     public void setRegisterData(RegisterData registerData) {
         this.registerData = registerData;
     }
-
 }

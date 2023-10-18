@@ -29,5 +29,4 @@ public class PaymentAuthDTO {
     public void setBlocoCompleto(String blocoCompleto) {
         BlocoCompleto = blocoCompleto;
     }
-
 }

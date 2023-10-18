@@ -3,7 +3,7 @@ package org.acme.dto.boletos;
 public class ReceiptDTO {
 
     private String receiptData;
-    private String receiptFormatted;
+    private String receiptformatted;
 
     public String getReceiptData() {
         return receiptData;
@@ -13,12 +13,11 @@ public class ReceiptDTO {
         this.receiptData = receiptData;
     }
 
-    public String getReceiptFormatted() {
-        return receiptFormatted;
+    public String getReceiptformatted() {
+        return receiptformatted;
     }
 
-    public void setReceiptFormatted(String receiptFormatted) {
-        this.receiptFormatted = receiptFormatted;
+    public void setReceiptformatted(String receiptformatted) {
+        this.receiptformatted = receiptformatted;
     }
-
 }

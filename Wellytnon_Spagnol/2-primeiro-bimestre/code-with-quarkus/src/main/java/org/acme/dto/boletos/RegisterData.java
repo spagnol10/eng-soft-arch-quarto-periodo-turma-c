@@ -146,5 +146,4 @@ public class RegisterData {
     public void setTotalWithDiscount(Double totalWithDiscount) {
         this.totalWithDiscount = totalWithDiscount;
     }
-
 }
