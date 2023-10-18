@@ -12,6 +12,7 @@ import org.acme.dto.boletos.PaymentResponseDTO;
 import org.acme.dto.boletos.TokenBoletoDTO;
 import org.acme.model.Payment;
 import org.acme.model.Token;
+import org.acme.repositories.PaymentRepository;
 import org.acme.service.MyRemoteService;
 import org.acme.service.TokenService;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
@@ -26,6 +27,9 @@ public class GreetingResource {
     @Inject
     @RestClient
     TokenService tokenService;
+
+    @Inject
+    PaymentRepository paymentRepository;
 
     @GET
     @Path("/token")
@@ -76,23 +80,37 @@ public class GreetingResource {
         entity.setDigitable(dto.getData().getDigitable());
         entity.setReceipt(response.getReceipt().getReceiptformatted());
 
-        entity.persist();
+        paymentRepository.persistPayment(entity);
         return Response.ok().entity(response).build();
-    }
-
-    @GET
-    @Path("/payment/find")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response findById(@HeaderParam("id") String id) {
-        return Response.ok().entity(Payment.find("id", Long.parseLong(id)).firstResult()).build();
     }
 
     @GET
     @Path("/payment/list")
     @Produces(MediaType.APPLICATION_JSON)
     public Response listPayments() {
-        return Response.ok().entity(Payment.listAll()).build();
+        return Response.ok().entity(paymentRepository.listAllPayments()).build();
     }
 
+    @GET
+    @Path("/payment/find")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response findById(@HeaderParam("id") String id) {
+        return Response.ok().entity(paymentRepository.findPaymentById(id)).build();
+    }
+
+    @PATCH
+    @Path("/payment")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Transactional
+    public Response update(@HeaderParam("id") String id) {
+        return Response.ok().entity(paymentRepository.updatePayment(id)).build();
+    }
+
+    @DELETE
+    @Path("/payment")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response delete(@HeaderParam("id") String id) {
+        return Response.ok().entity(paymentRepository.delete(id)).build();
+    }
 
 }
