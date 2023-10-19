@@ -2,23 +2,23 @@ package org.acme.repositories;
 
 import io.quarkus.hibernate.orm.panache.PanacheRepositoryBase;
 import jakarta.enterprise.context.ApplicationScoped;
-import org.acme.model.Payment;
+import org.acme.model.PaymentBoleto;
 
 import java.util.List;
 
 @ApplicationScoped
-public class PaymentRepository implements PanacheRepositoryBase<Payment, Long> {
-    public Payment persistPayment(Payment payment) {
-        payment.persist();
+public class PaymentRepository implements PanacheRepositoryBase<PaymentBoleto, Long> {
+    public PaymentBoleto persistPayment(PaymentBoleto paymentBoleto) {
+        paymentBoleto.persist();
 
-        return payment;
+        return paymentBoleto;
     }
 
-    public List<Payment> listAllPayments() {
+    public List<PaymentBoleto> listAllPayments() {
         return listAll();
     }
 
-    public Payment findPaymentById(String id) {
+    public PaymentBoleto findPaymentById(String id) {
         return find("id", Long.parseLong(id)).firstResult();
     }
 

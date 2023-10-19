@@ -17,7 +17,7 @@ public class ConsultResponseDTO {
     private String errorCode;
     private String message;
     private BigDecimal status;
-    private RegisterData registerData;
+    private RegisterDataDTO registerDataDTO;
 
     public String getAssignor() {
         return assignor;
@@ -123,11 +123,11 @@ public class ConsultResponseDTO {
         this.status = status;
     }
 
-    public RegisterData getRegisterData() {
-        return registerData;
+    public RegisterDataDTO getRegisterData() {
+        return registerDataDTO;
     }
 
-    public void setRegisterData(RegisterData registerData) {
-        this.registerData = registerData;
+    public void setRegisterData(RegisterDataDTO registerDataDTO) {
+        this.registerDataDTO = registerDataDTO;
     }
 }
