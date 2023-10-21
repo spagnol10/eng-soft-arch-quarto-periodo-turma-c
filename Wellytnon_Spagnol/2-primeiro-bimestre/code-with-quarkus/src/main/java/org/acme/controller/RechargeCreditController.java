@@ -3,18 +3,26 @@ package org.acme.controller;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.GET;
+import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.Form;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import org.acme.dto.recharge.ConsultResponseRechargeDTO;
+import org.acme.dto.recharge.ReservBalanceToRecharge;
 import org.acme.dto.recharge.TokenRechargeDTO;
 import org.acme.model.TokenRecharge;
+import org.acme.service.MyRemoteRechargeService;
 import org.acme.service.TokenRechargeService;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 
 @Path("/api/recharge")
 public class RechargeCreditController {
+
+    @Inject
+    @RestClient
+    MyRemoteRechargeService restClient;
 
     @Inject
     @RestClient
@@ -45,6 +53,16 @@ public class RechargeCreditController {
         TokenRechargeDTO token = tokenRechargeService.getToken(form);
 
         return token;
+    }
+
+    @POST
+    @Path("/consult")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Transactional
+    public Response update(ReservBalanceToRecharge dto) {
+        ConsultResponseRechargeDTO response = restClient.reserv("Bearer " + getToken().getAccess_token(), dto);
+
+        return Response.ok(response).build();
     }
 
 
