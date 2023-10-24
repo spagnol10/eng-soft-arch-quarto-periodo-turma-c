@@ -10,6 +10,7 @@ import jakarta.ws.rs.core.Form;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import org.acme.dto.recharge.ConsultResponseRechargeDTO;
+import org.acme.dto.recharge.QueryParams;
 import org.acme.dto.recharge.ReservBalanceToRecharge;
 import org.acme.dto.recharge.TokenRechargeDTO;
 import org.acme.model.TokenRecharge;
@@ -55,15 +56,75 @@ public class RechargeCreditController {
         return token;
     }
 
-    @POST
-    @Path("/consult")
+    @GET
+    @Path("/list")
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
-    public Response update(ReservBalanceToRecharge dto) {
-        ConsultResponseRechargeDTO response = restClient.reserv("Bearer " + getToken().getAccess_token(), dto);
+    public Response listOperators() {
+        QueryParams dto = new QueryParams();
+        dto.setCategory("0");
+        dto.setStateCode(11);
+        dto.setType("0");
+
+        ConsultResponseRechargeDTO response = restClient.listOperators("Bearer " + getToken().getAccess_token(), dto);
 
         return Response.ok(response).build();
     }
 
+    @GET
+    @Path("/consult/operational")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Transactional
+    public Response consultOperational() {
+        QueryParams dto = new QueryParams();
+        dto.setCategory("0");
+        dto.setStateCode(11);
+        dto.setType("0");
+
+        ConsultResponseRechargeDTO response = restClient.consultOperational("Bearer " + getToken().getAccess_token(), dto);
+
+        return Response.ok(response).build();
+    }
+
+    @GET
+    @Path("/consult/recharge")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Transactional
+    public Response consultRecharge() {
+        QueryParams dto = new QueryParams();
+        dto.setCategory("0");
+        dto.setStateCode(11);
+        dto.setType("0");
+
+        ConsultResponseRechargeDTO response = restClient.consultRecharge("Bearer " + getToken().getAccess_token(), dto);
+
+        return Response.ok(response).build();
+    }
+
+    @GET
+    @Path("/search")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Transactional
+    public Response searchOperator() {
+        QueryParams dto = new QueryParams();
+        dto.setCategory("0");
+        dto.setStateCode(11);
+        dto.setType("0");
+
+        ConsultResponseRechargeDTO response = restClient.searchOperator("Bearer " + getToken().getAccess_token(), dto);
+
+        return Response.ok(response).build();
+    }
+
+
+    @POST
+    @Path("/consult")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Transactional
+    public Response reserve(ReservBalanceToRecharge dto) {
+        ConsultResponseRechargeDTO response = restClient.reserv("Bearer " + getToken().getAccess_token(), dto);
+
+        return Response.ok(response).build();
+    }
 
 }
