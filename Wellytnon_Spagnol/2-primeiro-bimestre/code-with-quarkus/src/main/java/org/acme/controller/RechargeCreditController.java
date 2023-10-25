@@ -2,17 +2,11 @@ package org.acme.controller;
 
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.POST;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.Form;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-import org.acme.dto.recharge.ConsultResponseRechargeDTO;
-import org.acme.dto.recharge.QueryParams;
-import org.acme.dto.recharge.ReservBalanceToRecharge;
-import org.acme.dto.recharge.TokenRechargeDTO;
+import org.acme.dto.recharge.*;
 import org.acme.model.TokenRecharge;
 import org.acme.service.MyRemoteRechargeService;
 import org.acme.service.TokenRechargeService;
@@ -59,70 +53,45 @@ public class RechargeCreditController {
     @GET
     @Path("/list")
     @Produces(MediaType.APPLICATION_JSON)
-    @Transactional
-    public Response listOperators() {
-        QueryParams dto = new QueryParams();
-        dto.setCategory("0");
-        dto.setStateCode(11);
-        dto.setType("0");
-
-        ConsultResponseRechargeDTO response = restClient.listOperators("Bearer " + getToken().getAccess_token(), dto);
+    public Response listOperators(@QueryParam("stateCode") Integer stateCode, @QueryParam("category") String category, @QueryParam("type") String type) {
+        Operator response = restClient.listOperators("Bearer " + getToken().getAccess_token(), stateCode, category, type);
 
         return Response.ok(response).build();
     }
+
 
     @GET
-    @Path("/consult/operational")
+    @Path("/consult")
     @Produces(MediaType.APPLICATION_JSON)
-    @Transactional
-    public Response consultOperational() {
-        QueryParams dto = new QueryParams();
-        dto.setCategory("0");
-        dto.setStateCode(11);
-        dto.setType("0");
-
-        ConsultResponseRechargeDTO response = restClient.consultOperational("Bearer " + getToken().getAccess_token(), dto);
+    public Response consult(@QueryParam("stateCode") Integer stateCode, @QueryParam("providerId") String providerId) {
+        ConsultOperatingValues response = restClient.consult("Bearer " + getToken().getAccess_token(), stateCode, providerId);
 
         return Response.ok(response).build();
     }
 
-    @GET
-    @Path("/consult/recharge")
-    @Produces(MediaType.APPLICATION_JSON)
-    @Transactional
-    public Response consultRecharge() {
-        QueryParams dto = new QueryParams();
-        dto.setCategory("0");
-        dto.setStateCode(11);
-        dto.setType("0");
-
-        ConsultResponseRechargeDTO response = restClient.consultRecharge("Bearer " + getToken().getAccess_token(), dto);
-
-        return Response.ok(response).build();
-    }
-
-    @GET
-    @Path("/search")
-    @Produces(MediaType.APPLICATION_JSON)
-    @Transactional
-    public Response searchOperator() {
-        QueryParams dto = new QueryParams();
-        dto.setCategory("0");
-        dto.setStateCode(11);
-        dto.setType("0");
-
-        ConsultResponseRechargeDTO response = restClient.searchOperator("Bearer " + getToken().getAccess_token(), dto);
-
-        return Response.ok(response).build();
-    }
+//
+//    @GET
+//    @Path("/search")
+//    @Produces(MediaType.APPLICATION_JSON)
+//    @Transactional
+//    public Response searchOperator() {
+//        QueryParams dto = new QueryParams();
+//        dto.setCategory("0");
+//        dto.setStateCode(11);
+//        dto.setType("0");
+//
+//        ConsultResponseRechargeDTO response = restClient.searchOperator("Bearer " + getToken().getAccess_token(), dto);
+//
+//        return Response.ok(response).build();
+//    }
 
 
     @POST
-    @Path("/consult")
+    @Path("/reserve")
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
     public Response reserve(ReservBalanceToRecharge dto) {
-        ConsultResponseRechargeDTO response = restClient.reserv("Bearer " + getToken().getAccess_token(), dto);
+        ConsultResponseRechargeDTO response = restClient.reserve("Bearer " + getToken().getAccess_token(), dto);
 
         return Response.ok(response).build();
     }

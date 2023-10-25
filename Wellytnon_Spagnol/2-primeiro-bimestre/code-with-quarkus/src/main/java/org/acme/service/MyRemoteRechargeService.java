@@ -1,9 +1,7 @@
 package org.acme.service;
 
 import jakarta.ws.rs.*;
-import org.acme.dto.recharge.ConsultResponseRechargeDTO;
-import org.acme.dto.recharge.QueryParams;
-import org.acme.dto.recharge.ReservBalanceToRecharge;
+import org.acme.dto.recharge.*;
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
 
@@ -11,24 +9,24 @@ import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 public interface MyRemoteRechargeService {
 
     @GET
-    @Path("/v5/transactions/topups/providers?stateCode=11&type=0&category=0")
-    ConsultResponseRechargeDTO listOperators(@HeaderParam("Authorization") String token, QueryParams dto);
+    @Path("/v5/transactions/topups/providers")
+    Operator listOperators(@HeaderParam("Authorization") String token, @QueryParam("stateCode") Integer stateCode, @QueryParam("category") String category, @QueryParam("type") String type);
 
     @GET
     @Path("/v5/transactions/topups/provider-values")
-    ConsultResponseRechargeDTO consultOperational(@HeaderParam("Authorization") String token, QueryParams dto);
+    ConsultOperatingValues consult(@HeaderParam("Authorization") String token, @QueryParam("stateCode") Integer stateCode, @QueryParam("providerId") String providerId);
 
-    @GET
-    @Path("/v5/transactions/status-consult")
-    ConsultResponseRechargeDTO consultRecharge(@HeaderParam("Authorization") String token, QueryParams dto);
-
-    @GET
-    @Path("/v5/transactions/topups/find-providers")
-    ConsultResponseRechargeDTO searchOperator(@HeaderParam("Authorization") String token, QueryParams dto);
+//    @GET
+//    @Path("/v5/transactions/status-consult")
+//    ConsultResponseRechargeDTO consultRecharge(@HeaderParam("Authorization") String token, QueryParams dto);
+//
+//    @GET
+//    @Path("/v5/transactions/topups/find-providers")
+//    ConsultResponseRechargeDTO searchOperator(@HeaderParam("Authorization") String token, QueryParams dto);
 
     @POST
     @Path("/v5/transactions/topups")
-    ConsultResponseRechargeDTO reserv(@HeaderParam("Authorization") String token, ReservBalanceToRecharge dto);
+    ConsultResponseRechargeDTO reserve(@HeaderParam("Authorization") String token, ReservBalanceToRecharge dto);
 
     @PATCH
     @Path("/v5/transactions/topups/{transactionId}/capture")
