@@ -1,80 +1,70 @@
-## 🏗Projeto de Arquitetura de Software
+# calculadora
 
-### Comandos GIT
+This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
-IMPORTANTE ESTAR com o GITBASH NA PASTA DO REPO(eng-soft-poo-terceiro-periodo)
+If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
 
-Clonar o repo localmente
-> git clone + link do repo
+## Running the application in dev mode
 
-Adicionar alterações
-> git add .
+You can run your application in dev mode that enables live coding using:
 
-Adicionar comitar localmente arquivos alterados
-> git commit -m
+```shell script
+./mvnw compile quarkus:dev
+```
 
-Enviar para upstream(repositório remoto)
-> git push
+> **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at http://localhost:8080/q/dev/.
 
-CASO USUÁRIO NÃO CONFIGURADO
+## Packaging and running the application
 
-Configurar usuário global na máquina
-> git config --global user.name "nomeUSerGit"
+The application can be packaged using:
 
-Configurar e-mail usuário global na máquina
-> git config --global user.email "email_git@hotmail.com"
+```shell script
+./mvnw package
+```
 
-🚧REMOVER USUÁRIO DO GIT DA MÁQUINA CASO NÃO ESTEJA NO SEU COMPUTADOR PESSOAL!!
+It produces the `quarkus-run.jar` file in the `target/quarkus-app/` directory.
+Be aware that it’s not an _über-jar_ as the dependencies are copied into the `target/quarkus-app/lib/` directory.
 
-> git config --global --unset user.name
+The application is now runnable using `java -jar target/quarkus-app/quarkus-run.jar`.
 
-> git config --global --unset user.email
+If you want to build an _über-jar_, execute the following command:
 
-BUSCAR POR Gerenciador de Credenciais no windows e REMOVER o acesso dado ao GIT
+```shell script
+./mvnw package -Dquarkus.package.type=uber-jar
+```
 
----
+The application, packaged as an _über-jar_, is now runnable using `java -jar target/*-runner.jar`.
 
-### Link do Notion🔥
+## Creating a native executable
 
----
+You can create a native executable using:
 
-[Notion](https://www.notion.so/Primeiro-Bimestre-013e0180341e4a73b3ba2d1768fca330?pvs=4)
+```shell script
+./mvnw package -Pnative
+```
 
-### 🍴Fork e abertura de pull request
+Or, if you don't have GraalVM installed, you can run the native executable build in a container using:
 
-1º - Clicar na opção **Fork**
+```shell script
+./mvnw package -Pnative -Dquarkus.native.container-build=true
+```
 
-![Fork_PT_01](https://github.com/Sandrolaxx/eng-soft-arch-quarto-periodo-turma-b/assets/61207420/1eccb15a-f3ad-4355-ab16-f1b0fb244cbd)
+You can then execute your native executable with: `./target/calculadora-1.0-SNAPSHOT-runner`
 
-2º - Ao realizar o fork o segundo passo será criar o repositório no seu GitHub
+If you want to learn more about building native executables, please consult https://quarkus.io/guides/maven-tooling.
 
-![Fork_pt_02](https://github.com/Sandrolaxx/eng-soft-arch-quarto-periodo-turma-b/assets/61207420/4e06b579-5aef-4b1d-9281-8622895a561b)
+## Related Guides
 
-3º Então será criado o repo no seu git com base no fork do repo principal
+## Provided Code
 
-![Fork_pt_03](https://github.com/Sandrolaxx/eng-soft-arch-quarto-periodo-turma-b/assets/61207420/23b2c306-cacb-4439-aa72-28eb3c8efad3)
+### RESTEasy Reactive
 
-### 4º ⚠ATENÇÃO⚠ - Criar pasta com Snake Case 
-Irá fazer o clone do repositorio localmente, adicionar uma pasta com **SEU_NOME**, isso mesmo com snake case, exemplo "Roberto_Faria", e irá adicionar outra pasta com o projeto `calculadoraconsole` com um arquivo dentro, IRÁ fazer o **commit** para o repositorio com as suas alterações, ficando como a imagem abaixo
+Easily start your Reactive RESTful Web Services
 
-![Fork_pt_04](https://github.com/Sandrolaxx/eng-soft-poo-terceiro-periodo/assets/61207420/3cb2f88e-8474-4458-9bb8-9ca0ddbb4962)
+[Related guide section...](https://quarkus.io/guides/getting-started-reactive#reactive-jax-rs-resources)
 
-5º Irá iniciar a abertura do pull request
+### RESTEasy Reactive Qute
 
-![Fork_pt_05](https://github.com/Sandrolaxx/eng-soft-arch-quarto-periodo-turma-b/assets/61207420/0dc4d467-a7a5-41db-ad5d-26db22e64efd)
+Create your web page using Quarkus RESTEasy Reactive & Qute
 
-6º O GitHub irá mostrar o diff, apresentando todas as alterações realizadas, nesse momento você deve fazer o review de suas alterações e verificar se tudo está correto, ao final clicar em "Create pull request".
-
-![Fork_pt_06](https://github.com/Sandrolaxx/eng-soft-arch-quarto-periodo-turma-b/assets/61207420/e00b9d29-eef3-4b7d-b62e-dcf2ea6fef81)
-
-7º Nesse passo você adiciona um pequeno descrivo do que você realizou. Ao final clicar em "Create pull request".
-
-![Fork_pt_07](https://github.com/Sandrolaxx/eng-soft-arch-quarto-periodo-turma-b/assets/61207420/86dde404-55cc-4174-a863-50c61aa392ea)
-
-8º Feito!🥳🎉 A partir daqui seu pull request já está aberto e pronto para, se tudo correto, ser realizado o merge de suas alterações no projeto principal.
-
-![Fork_pt_08](https://github.com/Sandrolaxx/eng-soft-arch-quarto-periodo-turma-b/assets/61207420/8659495a-125d-4837-9d0a-49f9c5975f8a)
-
-9º Minha visão com o seu pull request aberto
-
-![Fork_pt_09](https://github.com/Sandrolaxx/eng-soft-arch-quarto-periodo-turma-b/assets/61207420/35e64864-2e65-49e2-890d-0c6ac573e008)
+[Related guide section...](https://quarkus.io/guides/qute#type-safe-templates)
