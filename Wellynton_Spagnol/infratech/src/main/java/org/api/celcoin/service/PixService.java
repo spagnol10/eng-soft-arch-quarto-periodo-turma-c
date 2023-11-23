@@ -13,14 +13,14 @@ import org.api.celcoin.infra.celcoin.repository.PixCelcoinRepository;
 public class PixService {
 
     @Inject
-    PixCelcoinRepository celcoin;
+    PixCelcoinRepository pixCelcoinRepository;
 
     @Inject
-    IPixDatabaseRepository panacheRepo;
+    IPixDatabaseRepository pixDatabaseRepository;
 
     @Transactional
     public Response handlePix(PixDTO dto) {
-        CreatePixQRCode createPix = new CreatePixQRCode(celcoin, panacheRepo);
+        CreatePixQRCode createPix = new CreatePixQRCode(pixCelcoinRepository, pixDatabaseRepository);
 
         PixDTO createdPix = createPix.execute(dto);
 
