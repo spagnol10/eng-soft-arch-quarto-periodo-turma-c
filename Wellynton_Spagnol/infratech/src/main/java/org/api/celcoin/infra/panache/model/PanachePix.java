@@ -13,6 +13,8 @@ import java.util.UUID;
 public class PanachePix extends PanacheEntityBase {
 
     @Id
+    @SequenceGenerator(name = "tokenSequence", sequenceName = "token_id_seq", allocationSize = 1, initialValue = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tokenSequence")
     @Column(name = "ID")
     private UUID id;
 
